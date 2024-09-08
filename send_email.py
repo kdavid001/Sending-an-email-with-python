@@ -6,10 +6,11 @@ import time
 # Email details
 smtp_server = "smtp.gmail.com"
 port = 587
-receiver_email = "korededavid03@gmail.com"
+receiver_email = "RECIEVERS-EMAIL"
 
-sender_email = "feranmidavid427@gmail.com"
-password = 'mtoc rvfk mume umln'
+sender_email = "SENDERS-EMAIL"
+password = 'PASSWORD'
+
 # Email content
 subject = "Test Email"
 body = "This is a test email."
@@ -21,6 +22,8 @@ message["To"] = receiver_email
 message["Subject"] = subject
 message.attach(MIMEText(body, "plain"))
 
+
+#To Check for errors.
 max_retries = 5  # Maximum number of retries
 retry_delay = 60  # Delay between retries in seconds
 
@@ -42,6 +45,7 @@ for attempt in range(max_retries):
         error_code = e.smtp_code
         error_message = e.smtp_error.decode()
 
+        #continously try again after 1 minute.
         if error_code == 421:
             print(f"Attempt {attempt + 1}: Service not available, retrying in {retry_delay} seconds...")
             time.sleep(retry_delay)
